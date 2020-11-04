@@ -6,6 +6,26 @@
     <b-field>
       <div style="margin: 40px"></div>
     </b-field>
+    <div v-if="todayList.length === 0">
+      <div class="card" style="margin: 8px">
+        <header class="card-header">
+          <p class="card-header-title">
+            <span class="icon"><i class="fas fa-paste"></i></span>today you have
+            no activity
+          </p>
+          
+          
+        </header>
+        <div class="card-content">
+              <div class="content">
+                <div>
+                  <i class="far fa-smile-beam fa-9x"></i>
+                  <br />
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
     <div v-if="todayList.length">
       <div v-for="(todayList, j) in todayList" :key="j" :value="j">
         <div class="card" style="margin: 8px">
@@ -68,8 +88,7 @@
 <script>
 export default {
   name: "todoTable",
-  computed: {
-  },
+  computed: {},
   props: {
     todayList: Array,
     // completeList: Array,
@@ -80,10 +99,10 @@ export default {
       if (mode === 2) {
         this.deleteActivity(index);
       }
-      if(mode === 3){
+      if (mode === 3) {
         this.checkActivity(index);
       }
-      if(mode === 1){
+      if (mode === 1) {
         this.editActivity(index);
       }
     },
@@ -92,7 +111,6 @@ export default {
       this.$emit("delete:activity", { id: index });
       console.log(this.resultQuery);
     },
-    
 
     checkActivity(index) {
       console.log("check index" + index);
@@ -142,8 +160,6 @@ export default {
       }
       return formattedDate;
     },
-
-    
   },
   data() {
     return {

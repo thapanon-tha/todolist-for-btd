@@ -174,12 +174,10 @@ export default {
     },
   },
   methods: {
-
-    deleteActivityMassage(index){
+    deleteActivityMassage(index) {
       this.massageSuccess("Delete activity <b>Success</b>");
-      deleteActivity(index);
+      this.deleteActivity(index);
     },
-
 
     deleteActivity(index) {
       if (this.todoList.length > 1) {
@@ -191,7 +189,6 @@ export default {
         this.todoList = [];
         localStorage.list = [];
       }
-      
     },
 
     checkActivity(index) {
@@ -241,19 +238,25 @@ export default {
     },
 
     editSubmit() {
-      for (var i in this.todoList) {
-        if (this.todoList[i].id == this.editIndex) {
-          this.todoList[i].workName = this.newName;
-          this.todoList[i].workDetail = this.newDetail;
-          this.todoList[i].workDate = this.newDate;
-          this.todoList[i].workDateforCal = +new Date(this.newDate);
-          break; //Stop this loop, we found it!
+      if (this.newName == "" || this.newDate == "") {
+        this.massageDanger(
+          "please <b>fill</b> activity name and activity date"
+        );
+      } else {
+        for (var i in this.todoList) {
+          if (this.todoList[i].id == this.editIndex) {
+            this.todoList[i].workName = this.newName;
+            this.todoList[i].workDetail = this.newDetail;
+            this.todoList[i].workDate = this.newDate;
+            this.todoList[i].workDateforCal = +new Date(this.newDate);
+            break; //Stop this loop, we found it!
+          }
         }
+        this.editVar = false;
+        this.todoList.sort(this.dynamicSort("workDateforCal"));
+        localStorage.list = JSON.stringify(this.todoList);
+        this.massageSuccess("edit activity <b>Success</b>");
       }
-      this.editVar = false;
-      this.todoList.sort(this.dynamicSort("workDateforCal"));
-      localStorage.list = JSON.stringify(this.todoList);
-      this.massageSuccess("edit activity <b>Success</b>");
     },
 
     sortActivity(indexx) {
@@ -309,7 +312,7 @@ export default {
         type: "is-danger",
       });
     },
-    
+
     massageSuccess(msg) {
       this.$buefy.toast.open({
         duration: 3000,
@@ -317,8 +320,6 @@ export default {
         position: "is-top",
       });
     },
-
-
   },
 };
 </script>
