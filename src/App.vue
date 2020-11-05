@@ -41,7 +41,7 @@
               <div style="margin: 20px" />
               <completeTable
                 v-bind:completeList="completeList"
-                @uncheck:activity="cancalActivity"
+                @uncheck:activity="cancelActivity"
               />
             </div>
           </div>
@@ -202,7 +202,7 @@ export default {
       this.massageSuccess("Check activity <b>Success</b>!!");
     },
 
-    cancalActivity(index) {
+    cancelActivity(index) {
       let activity = this.completeList.filter(function (activity) {
         return activity.id === index.id;
       });
@@ -222,7 +222,7 @@ export default {
         this.completeList = [];
         localStorage.complete = [];
       }
-      this.massageSuccess("cancal activity <b>Success</b>");
+      this.massageSuccess("cancel activity <b>Success</b>");
     },
 
     editActivity(index) {
@@ -306,7 +306,7 @@ export default {
 
     massageDanger(msg) {
       this.$buefy.toast.open({
-        duration: 3000,
+        duration: 1000,
         message: msg,
         position: "is-top",
         type: "is-danger",
@@ -315,7 +315,7 @@ export default {
 
     massageSuccess(msg) {
       this.$buefy.toast.open({
-        duration: 3000,
+        duration: 1000,
         message: msg,
         position: "is-top",
       });

@@ -36,14 +36,12 @@
                 </div>
               </div>
             </div>
-            <footer class="card-footer">
+            <footer class="card-footer" @click="getIndex(complete.id)">
               <a class="card-footer-item"
                 ><button
-                  class="button is-warning is-small"
-                  @click="getIndex(complete.id)"
-                >
+                  class="button is-danger is-small">
                   <span class="icon">
-                    <i class="fas fa-clipboard-check"></i>
+                    <i class="fas fa-times"></i>
                   </span></button
               ></a>
             </footer>
